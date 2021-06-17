@@ -70,10 +70,14 @@ def accuracy(output, labels):
     preds = output.max(1)[1].cpu().numpy()
     labels = labels.cpu().numpy()
     accuracy_score = (sklearn.metrics.accuracy_score(labels, preds))
+    recall_score = (sklearn.metrics.recall_score(labels, preds))
 
-    return accuracy_score
+    return accuracy_score, recall_score
 
-
+def plot_confusion(output, labels):
+    preds = output.max(1)[1].cpu().numpy()
+    labels = labels.cpu().numpy()
+    print(sklearn.metrics.confusion_matrix(labels, preds))
 
 def euclidean_dist(x, y):
     # x: N x D
